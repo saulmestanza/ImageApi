@@ -82,11 +82,15 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'image_api',
         'USER': 'root',
-        'PASSWORD': 'rootroot',
+        'PASSWORD': 'CP39A;R&=?4Y!DCsJR^A5/&EN-!C$:xQ',
         'HOST': 'localhost',
         'PORT': '',
     }
 }
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Password validation

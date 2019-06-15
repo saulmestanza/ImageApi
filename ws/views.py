@@ -54,17 +54,19 @@ class MultiFileUploadView(APIView):
                 )
                 attach_file.save()
             except Exception as e:
+            	print(e)
                 return Response(status=status.HTTP_204_NO_CONTENT)
         serializer = ProfileSerializer(attach_file)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def patch(self, request, *args, **kwargs):
-        ile_list = request.FILES.getlist('attach_files')
+        file_list = request.FILES.getlist('attach_files')
         if not file_list:
             return Response(
                 {"non_field_errors": ["Files are required."]},
                 status=status.HTTP_400_BAD_REQUEST
             )
+        attach_file = None 
         for _file_ in file_list:
             try:
                 attach_file = Profile(
@@ -73,8 +75,10 @@ class MultiFileUploadView(APIView):
                 )
                 attach_file.save()
             except Exception as e:
+            	print(e)
                 return Response(status=status.HTTP_204_NO_CONTENT)
-        return Response(status=status.HTTP_200_OK)
+        serializer = ProfileSerializer(attach_file)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class PortadaPreviewView(View):
